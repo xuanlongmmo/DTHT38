@@ -1,0 +1,12 @@
+.btn-custom {
+    font-size: 20px;
+}
+
+.form-label {
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+#cke_1_contents {
+    height: 400px !important;
+}
