@@ -72,7 +72,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label" for="media">Ảnh di tích</label>
+                                    <label class="form-label" for="mediagỉt">Ảnh di tích</label>
                                     <input type="text" name="name" id="name" class="form-control" placeholder="Nhập tên di tích">
                                 </div>
                             </div>
