@@ -15,16 +15,14 @@ function loaddistrict(e){
                 val: val,
             },
             success: function(data){
-                $('#district').html('');
-                $('#district').append('<option label="Chọn Quận/Huyện"></option>');
-                
+                var html = '';
                 if (val != '') {
                     data.forEach(element => {
-                        var option = '<option value="'+element['id']+'">'+element['name']+'</option>';
-                        $('#district').append(option);
+                        html += '<option value="'+element['id']+'">'+element['name']+'</option>';
                     });
-                } 
-
+                }
+                $('#district').html(html);
+                $('#ward').html('');
                 return 0;
             },
         });
@@ -42,16 +40,13 @@ function loadward(e){
                 val: val,
             },
             success: function(data){
-                $('#ward').html('');
-                $('#ward').append('<option label="Chọn Phường/Xã"></option>');
-                
+                var html = '';
                 if (val != '') {
                     data.forEach(element => {
-                        var option = '<option value="'+element['id']+'">'+element['name']+'</option>';
-                        $('#ward').append(option);
+                        html += '<option value="'+element['id']+'">'+element['name']+'</option>';
                     });
                 } 
-
+                $('#ward').html(html);
                 return 0;
             },
         });

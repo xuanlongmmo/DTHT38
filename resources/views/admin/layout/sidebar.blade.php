@@ -26,7 +26,6 @@
                 </a>
                 <ul class="slide-menu">
                     <li><a href="index.html" class="slide-item">Dashboard</a></li>
-                    <li><a href="hr-department.html" class="slide-item">Department</a></li>
                     <li class="sub-slide">
                         <a class="sub-side-menu__item" data-toggle="sub-slide" href="#"><span class="sub-side-menu__label">Employees</span><i class="sub-angle fa fa-angle-right"></i></a>
                         <ul class="sub-slide-menu">
@@ -35,33 +34,6 @@
                             <li><a class="sub-slide-item" href="hr-addemployee.html">Add Employee</a></li>
                         </ul>
                     </li>
-                    <li class="sub-slide">
-                        <a class="sub-side-menu__item" data-toggle="sub-slide" href="#"><span class="sub-side-menu__label">Attendance</span><i class="sub-angle fa fa-angle-right"></i></a>
-                        <ul class="sub-slide-menu">
-                            <li><a class="sub-slide-item" href="hr-attlist.html">Attendance List</a></li>
-                            <li><a class="sub-slide-item" href="hr-attuser.html">Attendance By User</a></li>
-                            <li><a class="sub-slide-item" href="hr-attview.html">Attendance View</a></li>
-                            <li><a class="sub-slide-item" href="hr-overviewcldr.html">Overview Calender</a></li>
-                            <li><a class="sub-slide-item" href="hr-attmark.html">Attendance Mark </a></li>
-                            <li><a class="sub-slide-item" href="hr-leaves.html">Leave Settings</a></li>
-                            <li><a class="sub-slide-item" href="hr-leavesapplication.html">Leave Applications</a></li>
-                            <li><a class="sub-slide-item" href="hr-recentleaves.html">Recent Leaves </a></li>
-                        </ul>
-                    </li>
-                    <li><a href="hr-award.html" class="slide-item">Awards</a></li>
-                    <li><a href="hr-holiday.html" class="slide-item">Holidays</a></li>
-                    <li><a href="hr-notice.html" class="slide-item">Notice Board</a></li>
-                    <li><a href="hr-expenses.html" class="slide-item">Expenses</a></li>
-                    <li class="sub-slide">
-                        <a class="sub-side-menu__item" data-toggle="sub-slide" href="#"><span class="sub-side-menu__label">Payroll</span><i class="sub-angle fa fa-angle-right"></i></a>
-                        <ul class="sub-slide-menu">
-                            <li><a class="sub-slide-item" href="hr-empsalary.html">Employee Salary</a></li>
-                            <li><a class="sub-slide-item" href="hr-addpayroll.html">Add Payroll</a></li>
-                            <li><a class="sub-slide-item" href="hr-editpayroll.html">Edit Payroll</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="hr-events.html" class="slide-item">Events</a></li>
-                    <li><a href="hr-settings.html" class="slide-item">Settings</a></li>
                 </ul>
             </li>
             <li class="slide">

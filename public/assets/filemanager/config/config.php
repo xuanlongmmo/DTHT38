@@ -67,7 +67,8 @@ $config = array(
     | without final / (DON'T TOUCH)
     |
     */
-    'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http"). "://". @$_SERVER['HTTP_HOST'].'/assets',
+    // 'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http"). "://". @$_SERVER['HTTP_HOST'].'/assets',
+    'base_url' => 'http://127.0.0.1/ditich/public/assets',
     /*
     |--------------------------------------------------------------------------
     | path from base_url to base of upload folder

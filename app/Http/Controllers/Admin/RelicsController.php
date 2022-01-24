@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Province;
 use App\Models\District;
 use App\Models\Ward;
+use App\Models\Rank;
+use App\Models\Category;
+use App\Models\Relic;
+use App\Models\Tag;
 
 class RelicsController extends Controller
 {
@@ -18,7 +24,8 @@ class RelicsController extends Controller
      */
     public function index()
     {
-        
+        $relics = Relic::all();
+        return view('admin.relics.index', compact('relics'));
     }
 
     /**
@@ -28,8 +35,10 @@ class RelicsController extends Controller
      */
     public function create()
     {
+        $ranks = Rank::all();
+        $categories = Category::all();
         $provinces = Province::all();
-        return view('admin.relics.add', compact('provinces'));
+        return view('admin.relics.add', compact('provinces', 'ranks', 'categories'));
     }
 
     /**
@@ -40,7 +49,38 @@ class RelicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // try {
+            DB::beginTransaction();
+            if ($request['tag'] != null) {
+                $arrval = explode(',', $request['tag']);
+                $arrtag = array();
+                foreach ($arrval as $key => $value) {
+                    $check = Tag::where('name', trim($value))->first();
+                    if (!$check) {
+                        $maxid = DB::table('tags')->max('id') + 1;
+                        $new = new Tag();
+                        $new->id = $maxid;
+                        $new->name = trim($value);
+                        $new->save();
+                        array_push($arrtag, $maxid);
+                    } else {
+                        array_push($arrtag, $check->id);
+                    }
+                }
+            }
+
+            $request['tag'] = $arrtag;
+
+            $dataRelic = $request->only(['name', 'slug', 'address', 'category', 'rate', 'tag', 'featured_img', 'description', 'content', 'image', 'document']);
+            $newRelic = new Relic($dataRelic);
+            $newRelic->user_id = Auth::user()->id;
+            $newRelic->save();
+            DB::commit();
+            return redirect()->route('relics.index');
+        // } catch (\Throwable $th) {
+        //     DB::rollback();
+        //     return redirect()->back()->withInput();
+        // }
     }
 
     /**
@@ -51,7 +91,7 @@ class RelicsController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -62,7 +102,24 @@ class RelicsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ranks = Rank::all();
+        $categories = Category::all();
+        $provinces = Province::all();
+        $relic = Relic::find($id);
+        if (!$relic) {
+            return redirect()->back()->withInput();
+        }
+
+        $tagdb = DB::table('tags')->whereIn('id', $relic->tag)->get();
+        $tag = '';
+        foreach ($tagdb as $key => $value) {
+            if ($tag == '') {
+                $tag = $value->name;
+            } else {
+                $tag = $tag. ', ' .$value->name;
+            }
+        }
+        return view('admin.relics.edit', compact('provinces', 'ranks', 'categories', 'relic', 'tag'));
     }
 
     /**
@@ -74,7 +131,48 @@ class RelicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            if ($request['tag'] != null) {
+                $arrval = explode(',', $request['tag']);
+                $arrtag = array();
+                foreach ($arrval as $key => $value) {
+                    $check = Tag::where('name', trim($value))->first();
+                    if (!$check) {
+                        $maxid = DB::table('tags')->max('id') + 1;
+                        $new = new Tag();
+                        $new->id = $maxid;
+                        $new->name = trim($value);
+                        $new->save();
+                        array_push($arrtag, $maxid);
+                    } else {
+                        array_push($arrtag, $check->id);
+                    }
+                }
+            }
+            $request['tag'] = $arrtag;
+
+            $relic = Relic::find($id);
+            $relic->update([
+                'name' => $request['name'], 
+                'slug' => $request['slug'], 
+                'address' => $request['address'], 
+                'category' => $request['category'], 
+                'rate' => $request['rate'], 
+                'tag' => $request['tag'], 
+                'featured_img' => $request['featured_img'], 
+                'description' => $request['description'], 
+                'content' => $request['content'], 
+                'image' => $request['image'], 
+                'document' => $request['document'], 
+            ]);
+            DB::commit();
+
+            return redirect()->route('relics.index');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
@@ -85,7 +183,7 @@ class RelicsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd(1);
     }
 
     public function loaddistrict()

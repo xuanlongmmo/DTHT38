@@ -24,5 +24,15 @@ class DatabaseSeeder extends Seeder
             ['phone'=>'0989735559', 'email'=>'admin@gmail.com', 'username'=>'admin', 'password'=>'$2y$10$EXdJJlzJiD7k9Xfl3KAu9Oer7GEc4amUufH4wxxKwmc85Nz1w5V4m', 'group_id'=>'1', 'created_at' => date("Y-m-d H:i:s")],
             ['phone'=>'0123456789', 'email'=>'nv@gmail.com', 'username'=>'nv', 'password'=>'$2y$10$EXdJJlzJiD7k9Xfl3KAu9Oer7GEc4amUufH4wxxKwmc85Nz1w5V4m', 'group_id'=>'3', 'created_at' => date("Y-m-d H:i:s")],
         ]);
+
+        DB::table('ranks')->insert([
+            ['name'=>'Di tích cấp Tỉnh', 'rate'=>'1'],
+            ['name'=>'Di tích cấp Quốc Gia', 'rate'=>'2'],
+        ]);
+
+        DB::table('categories')->insert([
+            ['name'=>'Đền thờ', 'slug'=>'den-tho'],
+            ['name'=>'Di tích', 'slug'=>'di-tich'],
+        ]);
     }
 }

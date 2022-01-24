@@ -16,15 +16,15 @@ class CreateFestivalsTable extends Migration
         Schema::create('festivals', function (Blueprint $table) {
             $table->id();
             $table->string('name', 200);
-            $table->bigInteger('province_id')->unsigned();
-            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
-            $table->bigInteger('district_id')->unsigned();
-            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
-            $table->bigInteger('ward_id')->unsigned()->nullable();
-            $table->foreign('ward_id')->references('id')->on('wards')->onDelete('cascade');
+            $table->string('slug', 200);
+            $table->text('featured_img');
             $table->date('date');
             $table->text('description');
             $table->json('image');
+            $table->json('document');
+            $table->integer('status')->default(1);
+            $table->bigInteger('relic_id')->unsigned()->nullable();
+            $table->foreign('relic_id')->references('id')->on('relics')->onDelete('cascade');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

@@ -5,11 +5,11 @@
 @section('content')
     <div class="page-header d-lg-flex d-block">
         <div class="page-leftheader">
-            <h4 class="page-title">Thêm di tích</h4>
+            <h4 class="page-title">Sửa di tích</h4>
         </div>
     </div>
 
-    <form action="{{ route('relics.store') }}" id="relicForm" method="POST">
+    <form action="{{ route('relics.update', ['id'=>$relic->id]) }}" id="relicForm" method="POST">
         @csrf
         <button>aaaa</button>
         <div class="row">
@@ -23,14 +23,14 @@
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="name">Tên di tích <span class="text-red">*</span></label>
-                                    <input style="margin-bottom: 5px" type="text" name="name" id="name" value="{{ old('name') }}" class="form-control" placeholder="Nhập tên di tích">
-                                    <input type="hidden" name="slug" id="slughidden" value="{{ old('slug') }}">
-                                    <span style="display: block" id="spanslug">Đường dẫn: {{ URL::to('/'); }}/di-tich/<span id="slug">{{ old('slug') }}</span>/<button onclick="return changeinput()" class="button-white" id="editslug" type="button">Sửa</button></span>
+                                    <input style="margin-bottom: 5px" type="text" name="name" id="name" value="{{ $relic->name }}" class="form-control" placeholder="Nhập tên di tích">
+                                    <input type="hidden" name="slug" id="slughidden" value="{{ $relic->slug }}">
+                                    <span style="display: block" id="spanslug">Đường dẫn: {{ URL::to('/'); }}/di-tich/<span id="slug">{{ $relic->slug }}</span>/<button onclick="return changeinput()" class="button-white" id="editslug" type="button">Sửa</button></span>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label" for="address">Đường/Số nhà <span class="text-red">*</span></label>
-                                    <input type="text" class="form-control" name="address" id="address" value="{{ old('address') }}" placeholder="Nhập Đường/Số nhà">
+                                    <input type="text" class="form-control" name="address" id="address" value="{{ $relic->address }}" placeholder="Nhập Đường/Số nhà">
                                 </div>
                             </div>
 
@@ -56,23 +56,41 @@
                                     <label style="margin-bottom: 7px;" for="category" class="form-label">Thêm danh mục <span class="text-red">*</span></label>
                                     <select name="category[]" id="category" class="form-control select2" data-placeholder="Chọn danh mục" multiple>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <?php $check = 0; ?>
+                                            @foreach ($relic->category as $cat)
+                                                @if ($cat == $category->id)
+                                                    <?php $check = 1; ?>
+                                                @endif
+                                            @endforeach
+                                            @if ($check == 1)
+                                                <option selected value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @else
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label" for="tag">Thêm tag</label>
-                                    <input type="text" class="form-control" name="tag" id="tag" value="{{ old('tag') }}" placeholder="Nhập tag ( Ngăn cách bởi dấu , )">
+                                    <input type="text" class="form-control" name="tag" id="tag" value="{{ $tag }}" placeholder="Nhập tag ( Ngăn cách bởi dấu , )">
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label" for="rate">Xếp hạng <span class="text-red">*</span></label>
                                     <select name="rate[]" id="rate" class="form-control select2" data-placeholder="Xếp hạng" multiple>
                                         @foreach ($ranks as $rank)
-                                            <option value="{{ $rank->id }}">
-                                                {{ $rank->name }}
-                                            </option>
+                                            <?php $check = 0; ?>
+                                            @foreach ($relic->rate as $rate)
+                                                @if ($rate == $rank->id)
+                                                    <?php $check = 1; ?>
+                                                @endif
+                                            @endforeach
+                                            @if ($check == 1)
+                                                <option selected value="{{ $rank->id }}">{{ $rank->name }}</option>
+                                            @else
+                                                <option value="{{ $rank->id }}">{{ $rank->name }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -87,10 +105,10 @@
 
                                 <div class="form-group">
                                     <label class="form-label" for="featured_img">Ảnh đại diện <span class="text-red">*</span></label>
-                                    <input type="hidden" name="featured_img" id="featured_img" value="{{ old('featured_img') }}">
+                                    <input type="hidden" name="featured_img" id="featured_img" value="{{ $relic->featured_img }}">
                                     <div id="featured_preview" onclick="return openresponfile('{{ asset('assets/filemanager/dialog.php') }}?type=1&popup=1&field_id=featured_img&akey=HPa8auX8Zi1G0UFGngbBbhkHQ1iSq9Ui8BftAI5Ac')" class="featured_preview">
-                                        @if (old('featured_img') != '')
-                                            <img class="featured_img" src="{{ old('featured_img') }}" alt="">
+                                        @if ($relic->featured_img != '')
+                                            <img class="featured_img" src="{{ $relic->featured_img }}" alt="">
                                         @else
                                             <div class="img-add"><i class="fe fe-plus"></i></div> 
                                         @endif
@@ -100,12 +118,12 @@
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="editor2">Mô tả ngắn <span class="text-red">*</span></label>
-                                    <textarea id="editor2" name="description" class="form-control"></textarea>
+                                    <textarea id="editor2" name="description" class="form-control">{{ $relic->description }}</textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label" for="editor">Nội dung <span class="text-red">*</span></label>
-                                    <textarea id="editor" name="content" class="form-control"></textarea>
+                                    <textarea id="editor" name="content" class="form-control">{{ $relic->content }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -123,20 +141,33 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
-                                    <input type="hidden" id="image" name="image">
+                                    <input type="hidden" id="image" name="image" value="{{ $relic->image }}">
                                     <label class="form-label" for="media">Ảnh di tích</label>
                                     <ul class="list-preview row">
                                         <li id="img-add" class="col-6 col-md-3 col-xl-2 img-preview" onclick="return openresponfile('{{ asset('assets/filemanager/dialog.php') }}?type=1&popup=1&field_id=image&akey=HPa8auX8Zi1G0UFGngbBbhkHQ1iSq9Ui8BftAI5Ac')">
                                             <div class="img-add"><i class="fe fe-plus"></i></div>
                                         </li>
+                                        <?php $images = json_decode($relic->image, true); ?>
+                                        @foreach ($images as $image)
+                                            <li class='col-6 col-md-3 col-xl-2 img-select'><img class='img-preview' src='{{ $image }}'></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
-                                    <input type="hidden" id="document" name="document">
+                                    <input type="hidden" id="document" name="document" value="{{ $relic->document }}">
                                     <label onclick="return openresponfile('{{ asset('assets/filemanager/dialog.php') }}?type=2&popup=1&field_id=document&akey=HPa8auX8Zi1G0UFGngbBbhkHQ1iSq9Ui8BftAI5Ac')" style="cursor: pointer;" class="form-label" for="docs">Tài liệu di tích</label>
-                                    <div id="list-file"></div>
+                                    <div id="list-file">
+                                        <?php $documents = json_decode($relic->document, true); ?>
+                                        @foreach ($documents as $document)
+                                            @php
+                                                $arr = explode('/', $document);
+                                                $name = $arr[count($arr) - 1];
+                                            @endphp
+                                            <li><a href='{{ $document }}'>{{ $name }}</a></li>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +200,7 @@
                 $('.img-select').remove();
                 $('.list-preview').append(str);
                 $('.img-preview').height($('#img-add').width());
-                jQuery('#'+field_id).val(urlImages);
+                {{--  jQuery('#'+field_id).val(urlImages);  --}}
             } else if (field_id == 'document') {
                 urlImages.forEach(function (value){
                     var arrval = value.split('/');

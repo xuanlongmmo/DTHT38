@@ -41,9 +41,14 @@
 
 		<!-- INTERNAL Data table css -->
 		<link href="assets/plugins/datatable/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+
+		<!-- Treeview css -->
+		<link href="assets/plugins/treeview/treeview.css" rel="stylesheet" type="text/css">
 		
 		<!---Custom css-->
 		<link href="assets/css/custom.css" rel="stylesheet"/>
+
+		@yield('style')
 	</head>
 
 	<body class="app sidebar-mini dark-mode">
@@ -585,6 +590,9 @@
 
 		<!-- INTERNAL Index js-->
 		<script src="assets/js/index1-dark.js"></script>
+
+		<!-- Treeview js-->
+		<script src="assets/plugins/treeview/treeview.js"></script>
 		
 		<!-- Ajax js-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -594,5 +602,6 @@
 		<script src="assets/js/admin/loadunit.js"></script>
 		<script src="assets/js/admin/relics.js"></script>
 
+		@yield('script')
 	</body>
 </html>
