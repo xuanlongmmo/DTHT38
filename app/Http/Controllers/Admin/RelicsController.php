@@ -49,7 +49,7 @@ class RelicsController extends Controller
      */
     public function store(Request $request)
     {
-        // try {
+        try {
             DB::beginTransaction();
             if ($request['tag'] != null) {
                 $arrval = explode(',', $request['tag']);
@@ -70,6 +70,8 @@ class RelicsController extends Controller
             }
 
             $request['tag'] = $arrtag;
+            $request['image'] = !empty($request['image']) ? explode(',', $request['image']): '';
+            $request['document'] = !empty($request['document']) ? explode(',', $request['document']): '';
 
             $dataRelic = $request->only(['name', 'slug', 'address', 'category', 'rate', 'tag', 'featured_img', 'description', 'content', 'image', 'document']);
             $newRelic = new Relic($dataRelic);
@@ -77,10 +79,10 @@ class RelicsController extends Controller
             $newRelic->save();
             DB::commit();
             return redirect()->route('relics.index');
-        // } catch (\Throwable $th) {
-        //     DB::rollback();
-        //     return redirect()->back()->withInput();
-        // }
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->back()->withInput();
+        }
     }
 
     /**
@@ -163,8 +165,8 @@ class RelicsController extends Controller
                 'featured_img' => $request['featured_img'], 
                 'description' => $request['description'], 
                 'content' => $request['content'], 
-                'image' => $request['image'], 
-                'document' => $request['document'], 
+                'image' => !empty($request['image']) ? explode(',', $request['image']): NULL, 
+                'document' => !empty($request['document']) ? explode(',', $request['document']): NULL, 
             ]);
             DB::commit();
 
@@ -183,7 +185,12 @@ class RelicsController extends Controller
      */
     public function destroy($id)
     {
-        dd(1);
+        $relic = Relic::find($id);
+        if (!$relic) {
+            return redirect()->back();
+        }
+        $relic->delete();
+        return redirect()->back();
     }
 
     public function loaddistrict()

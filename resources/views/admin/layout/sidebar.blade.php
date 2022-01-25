@@ -22,25 +22,51 @@
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="#">
                     <i class="feather feather-home sidemenu_icon"></i>
-                    <span class="side-menu__label">HR Dashboard</span><i class="angle fa fa-angle-right"></i>
+                    <span class="side-menu__label">Thống kê</span></i>
                 </a>
-                <ul class="slide-menu">
-                    <li><a href="index.html" class="slide-item">Dashboard</a></li>
-                    <li class="sub-slide">
-                        <a class="sub-side-menu__item" data-toggle="sub-slide" href="#"><span class="sub-side-menu__label">Employees</span><i class="sub-angle fa fa-angle-right"></i></a>
-                        <ul class="sub-slide-menu">
-                            <li><a class="sub-slide-item" href="hr-emplist.html">Employees List</a></li>
-                            <li><a class="sub-slide-item" href="hr-empview.html">View Employee</a></li>
-                            <li><a class="sub-slide-item" href="hr-addemployee.html">Add Employee</a></li>
-                        </ul>
-                    </li>
-                </ul>
             </li>
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="#">
                     <i class="feather feather-book-open sidemenu_icon"></i>
-                    <span class="side-menu__label">Di tích</span></i>
+                    <span class="side-menu__label">Di tích</span><i class="angle fa fa-angle-right"></i>
                 </a>
+                <ul class="slide-menu">
+                    <li><a href="{{ route('relics.index') }}" class="slide-item">Danh sách</a></li>
+                    <li><a href="{{ route('relics.create') }}" class="slide-item">Thêm mới</a></li>
+                </ul>
+            </li>
+
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#">
+                    <i class="feather feather-compass sidemenu_icon"></i>
+                    <span class="side-menu__label">Hiện vật</span><i class="angle fa fa-angle-right"></i>
+                </a>
+                <ul class="slide-menu">
+                    <li><a href="" class="slide-item">Danh sách</a></li>
+                    <li><a href="" class="slide-item">Thêm mới</a></li>
+                </ul>
+            </li>
+
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#">
+                    <i class="feather feather-users sidemenu_icon"></i>
+                    <span class="side-menu__label">Nhân vật được thờ</span><i class="angle fa fa-angle-right"></i>
+                </a>
+                <ul class="slide-menu">
+                    <li><a href="" class="slide-item">Danh sách</a></li>
+                    <li><a href="" class="slide-item">Thêm mới</a></li>
+                </ul>
+            </li>
+
+            <li class="slide">
+                <a class="side-menu__item" data-toggle="slide" href="#">
+                    <i class="feather feather-map sidemenu_icon"></i>
+                    <span class="side-menu__label">Lễ hội</span><i class="angle fa fa-angle-right"></i>
+                </a>
+                <ul class="slide-menu">
+                    <li><a href="" class="slide-item">Danh sách</a></li>
+                    <li><a href="" class="slide-item">Thêm mới</a></li>
+                </ul>
             </li>
         </ul>
         <div class="Annoucement_card">

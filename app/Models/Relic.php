@@ -28,13 +28,18 @@ class Relic extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function tagok()
+    public function gettag()
     {
-        return $this->belongsTo(Tag::class, 'tag');
+        return $this->belongsToJson('App\Models\Tag', 'tag');
     }
 
     public function getcategory()
     {
         return $this->belongsToJson('App\Models\Category', 'category');
+    }
+
+    public function getrate()
+    {
+        return $this->belongsToJson('App\Models\Rank', 'rate');
     }
 }

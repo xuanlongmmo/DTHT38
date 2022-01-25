@@ -11,7 +11,6 @@
 
     <form action="{{ route('relics.store') }}" id="relicForm" method="POST">
         @csrf
-        <button>aaaa</button>
         <div class="row">
             <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                 <div class="card">
@@ -113,6 +112,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                 <div class="card">
@@ -140,6 +140,56 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div onclick="return showhideform('artifact')" style="cursor: pointer" class="card-header border-bottom-0">
+                        <h4 class="card-title">Hiện vật</h4>
+                    </div>
+                    <div class="card-body body-showhide">
+                        <div id="artifact" class="row hide">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="editorartifact">Nội dung hiện vật<span class="text-red">*</span></label>
+                                    <textarea id="editorartifact" name="contentartifact" class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="hidden" id="image" name="image">
+                                    <label class="form-label" for="media">Ảnh hiện vật</label>
+                                    <ul class="list-preview row">
+                                        <li id="img-add" class="col-6 col-md-3 col-xl-2 img-preview" onclick="return openresponfile('{{ asset('assets/filemanager/dialog.php') }}?type=1&popup=1&field_id=image&akey=HPa8auX8Zi1G0UFGngbBbhkHQ1iSq9Ui8BftAI5Ac')">
+                                            <div class="img-add"><i class="fe fe-plus"></i></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="hidden" id="document" name="document">
+                                    <label onclick="return openresponfile('{{ asset('assets/filemanager/dialog.php') }}?type=2&popup=1&field_id=document&akey=HPa8auX8Zi1G0UFGngbBbhkHQ1iSq9Ui8BftAI5Ac')" style="cursor: pointer;" class="form-label" for="docs">Tài liệu hiện vật</label>
+                                    <div id="list-file"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="buttondiv">
+                        <button type="submit" class="btn btn-primary btncus">Lưu di tích</button>
+                        <a href="{{ route('relics.index') }}" class="btn btn-secondary btncus">Trở về danh sánh di tích</a>
                     </div>
                 </div>
             </div>
@@ -180,14 +230,13 @@
                     if (ext[1] == 'pdf' || ext[1] == 'docx' || ext[1] == 'xlsx') {
                         val = '"' + value + '"';
                         if (urlnew == '') {
-                            urlnew += '[' + val;
+                            urlnew = val;
                         } else {
                             urlnew += ',' + val;
                         }
                         str += "<li><a href='" + value + "'>" + name + "</a></li>";
                     }
                 });
-                urlnew += ']';
                 jQuery('#'+field_id).val(urlnew);
                 $('#list-file').html(str);
             } else if (field_id == 'featured_img') {

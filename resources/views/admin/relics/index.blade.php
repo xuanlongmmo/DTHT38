@@ -11,7 +11,7 @@
         </div>
         <div class="page-rightheader ml-md-auto">
             <div class=" btn-list">
-                <button class="btn btn-primary btn-custom" data-placement="top" data-toggle="tooltip"> <i class="fe fe-plus"></i> Thêm di tích</button>
+                <a class="btn btn-primary btn-custom" data-placement="top" href="{{ route('relics.create') }}" data-toggle="tooltip"> <i class="fe fe-plus"></i> Thêm di tích</a>
             </div>
         </div>
     </div>
@@ -29,6 +29,7 @@
                                     <th class="border-bottom-0">Ảnh đại diện</th>
                                     <th class="border-bottom-0">Địa chỉ</th>
                                     <th class="border-bottom-0">Danh mục</th>
+                                    <th class="border-bottom-0">Xếp hạng</th>
                                     <th class="border-bottom-0">Ngày thêm</th>
                                     <th class="border-bottom-0">Hành động</th>
                                 </tr>
@@ -40,7 +41,7 @@
                                         <td><a href="{{ route('relics.edit', ['id'=>$relic->id]) }}">{{ $relic->name }}</a></td>
                                         <td>
                                             <a href="{{ $relic->slug }}">
-                                                <img style="height: 70px" src="https://scontent.fhph1-2.fna.fbcdn.net/v/t39.30808-6/p180x540/272221927_4685684891545435_160166894675441178_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=Pn7ez2_jXC4AX_7rbki&_nc_ht=scontent.fhph1-2.fna&oh=00_AT-HUSmqZ_Er7a_0qXUeLiCgmMv3ujFeLbxsYMOEgRspXg&oe=61F287A2" alt="">
+                                                <img class="img-index" src="{{ $relic->featured_img }}" alt="">
                                             </a>
                                         </td>
                                         <td>{{ $relic->address }}</td>
@@ -49,8 +50,19 @@
                                                 <a class="itemshow" href="">{{ $cat->name }}</a>
                                             @endforeach
                                         </td>
-                                        <td>{{ $relic->created_at->format('h:i d/m/Y') }}</td>
-                                        <td>{{ $relic->created_at->format('h:i d/m/Y') }}</td>
+                                        <td>
+                                            @foreach ($relic->getrate as $rate)
+                                                <a class="itemshow" href="">{{ $rate->name }}</a>
+                                            @endforeach
+                                        </td>
+                                        <td>{{ $relic->created_at->format('H:i d/m/Y') }}</td>
+                                        <td>
+                                            <a href="{{ route('relics.edit', ['id'=>$relic->id]) }}" class="btn btn-info">Sửa</a>
+                                            <form style="display: inline-block;" action="{{ route('relics.destroy', ['id'=>$relic->id]) }}" method="POST">
+                                                @csrf
+                                                <button onclick="return confirm('Bạn có chắc chắn muốn xóa di tích này không, nếu chắc chắn muốn xóa nhấn vào ok còn chưa chắc chắn nhấn cancel?');" type="submit" class="btn btn-danger">Xóa</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -84,7 +96,8 @@
                         "previous": "Trước",
                         "next": "Sau"
                     }
-                }
+                },
+                "order": [[ 6, 'desc' ]]
             });
         </script>
     @endsection

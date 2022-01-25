@@ -11,7 +11,6 @@
 
     <form action="{{ route('relics.update', ['id'=>$relic->id]) }}" id="relicForm" method="POST">
         @csrf
-        <button>aaaa</button>
         <div class="row">
             <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                 <div class="card">
@@ -141,36 +140,49 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
-                                    <input type="hidden" id="image" name="image" value="{{ $relic->image }}">
+                                    <input type="hidden" id="image" name="image" value="{{ !empty($relic->image) ? implode(',', $relic->image) : NULL }}">
                                     <label class="form-label" for="media">Ảnh di tích</label>
                                     <ul class="list-preview row">
                                         <li id="img-add" class="col-6 col-md-3 col-xl-2 img-preview" onclick="return openresponfile('{{ asset('assets/filemanager/dialog.php') }}?type=1&popup=1&field_id=image&akey=HPa8auX8Zi1G0UFGngbBbhkHQ1iSq9Ui8BftAI5Ac')">
                                             <div class="img-add"><i class="fe fe-plus"></i></div>
                                         </li>
-                                        <?php $images = json_decode($relic->image, true); ?>
-                                        @foreach ($images as $image)
-                                            <li class='col-6 col-md-3 col-xl-2 img-select'><img class='img-preview' src='{{ $image }}'></li>
-                                        @endforeach
+                                        @if (!empty($relic->image))
+                                            @foreach ($relic->image as $image)
+                                                <li class='col-6 col-md-3 col-xl-2 img-select'><img class='img-preview' src='{{ $image }}'></li>
+                                            @endforeach
+                                        @endif
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <div class="form-group">
-                                    <input type="hidden" id="document" name="document" value="{{ $relic->document }}">
+                                    <input type="hidden" id="document" name="document" value="{{ !empty($relic->document) ? implode(',', $relic->document) : NULL }}">
                                     <label onclick="return openresponfile('{{ asset('assets/filemanager/dialog.php') }}?type=2&popup=1&field_id=document&akey=HPa8auX8Zi1G0UFGngbBbhkHQ1iSq9Ui8BftAI5Ac')" style="cursor: pointer;" class="form-label" for="docs">Tài liệu di tích</label>
                                     <div id="list-file">
-                                        <?php $documents = json_decode($relic->document, true); ?>
-                                        @foreach ($documents as $document)
-                                            @php
-                                                $arr = explode('/', $document);
-                                                $name = $arr[count($arr) - 1];
-                                            @endphp
-                                            <li><a href='{{ $document }}'>{{ $name }}</a></li>
-                                        @endforeach
+                                        @if (!empty($relic->document))
+                                            @foreach ($relic->document as $document)
+                                                @php
+                                                    $arr = explode('/', $document);
+                                                    $name = $arr[count($arr) - 1];
+                                                @endphp
+                                                <li><a href='{{ $document }}'>{{ $name }}</a></li>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="buttondiv">
+                        <button type="submit" class="btn btn-primary btncus">Lưu di tích</button>
+                        <a href="{{ route('relics.index') }}" class="btn btn-secondary btncus">Trở về danh sánh di tích</a>
                     </div>
                 </div>
             </div>
@@ -200,7 +212,7 @@
                 $('.img-select').remove();
                 $('.list-preview').append(str);
                 $('.img-preview').height($('#img-add').width());
-                {{--  jQuery('#'+field_id).val(urlImages);  --}}
+                jQuery('#'+field_id).val(urlImages);
             } else if (field_id == 'document') {
                 urlImages.forEach(function (value){
                     var arrval = value.split('/');
@@ -209,16 +221,14 @@
                     let val = '';
  
                     if (ext[1] == 'pdf' || ext[1] == 'docx' || ext[1] == 'xlsx') {
-                        val = '"' + value + '"';
                         if (urlnew == '') {
-                            urlnew += '[' + val;
+                            urlnew = value;
                         } else {
-                            urlnew += ',' + val;
+                            urlnew += ',' + value;
                         }
                         str += "<li><a href='" + value + "'>" + name + "</a></li>";
                     }
                 });
-                urlnew += ']';
                 jQuery('#'+field_id).val(urlnew);
                 $('#list-file').html(str);
             } else if (field_id == 'featured_img') {
