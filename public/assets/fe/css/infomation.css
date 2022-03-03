@@ -1,0 +1,58 @@
+.infomation {
+
+}
+
+.infomation__header {
+
+}
+
+.infomation__header-title {
+
+}
+
+.infomation__header-desc {
+
+}
+
+.infomation__body {
+    padding: 30px 0;
+}
+
+.infomation__box {
+
+}
+
+.infomation__box-title {
+    margin-bottom: 20px;
+}
+
+.infomation__box-contact {
+
+}
+
+.infomation__box-contact-title {
+    font-size: 1.6rem;
+}
+
+.infomation__box-contact-list {
+
+}
+
+.infomation__box-contact-item {
+    margin-bottom: 10px;
+}
+
+.infomation__box-contact-desc {
+
+}
+
+.infomation__box-contact-text {
+    padding-bottom: 20px;
+}
+
+
+@media screen and (max-width: 46.188em) {
+    .infomation__body {
+        padding-bottom: 0;
+    }
+}

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Tag;
 use App\Models\Category;
+use App\Models\User;
 
 class Relic extends Model
 {
@@ -22,6 +23,11 @@ class Relic extends Model
         'image' => 'array',
         'document' => 'array',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 
     /**
      * Get the user that owns the Relic

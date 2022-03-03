@@ -146,50 +146,11 @@
         </div>
 
         <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <div class="card">
-                    <div onclick="return showhideform('artifact')" style="cursor: pointer" class="card-header border-bottom-0">
-                        <h4 class="card-title">Hiện vật</h4>
-                    </div>
-                    <div class="card-body body-showhide">
-                        <div id="artifact" class="row hide">
-                            <div class="col-lg-12 col-md-12">
-                                <div class="form-group">
-                                    <label class="form-label" for="editorartifact">Nội dung hiện vật<span class="text-red">*</span></label>
-                                    <textarea id="editorartifact" name="contentartifact" class="form-control"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6 col-md-12">
-                                <div class="form-group">
-                                    <input type="hidden" id="image" name="image">
-                                    <label class="form-label" for="media">Ảnh hiện vật</label>
-                                    <ul class="list-preview row">
-                                        <li id="img-add" class="col-6 col-md-3 col-xl-2 img-preview" onclick="return openresponfile('{{ asset('assets/filemanager/dialog.php') }}?type=1&popup=1&field_id=image&akey=HPa8auX8Zi1G0UFGngbBbhkHQ1iSq9Ui8BftAI5Ac')">
-                                            <div class="img-add"><i class="fe fe-plus"></i></div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="form-group">
-                                    <input type="hidden" id="document" name="document">
-                                    <label onclick="return openresponfile('{{ asset('assets/filemanager/dialog.php') }}?type=2&popup=1&field_id=document&akey=HPa8auX8Zi1G0UFGngbBbhkHQ1iSq9Ui8BftAI5Ac')" style="cursor: pointer;" class="form-label" for="docs">Tài liệu hiện vật</label>
-                                    <div id="list-file"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="buttondiv">
-                        <button type="submit" class="btn btn-primary btncus">Lưu di tích</button>
-                        <a href="{{ route('relics.index') }}" class="btn btn-secondary btncus">Trở về danh sánh di tích</a>
+                        <button type="button" onclick="return submitback('relicForm')" class="btn btn-primary btncus">Lưu di tích và xem danh sách</button>
+                        <button type="button" onclick="return submitnext('relicForm')" class="btn btn-secondary btncus">Lưu và sang bước tiếp theo</button>
                     </div>
                 </div>
             </div>
@@ -201,110 +162,9 @@
     <script src="assets/plugins/select2/select2.full.min.js"></script>
     <script src="assets/js/select2.js"></script>
     <script src="assets/plugins/validate/jquery.validate.min.js"></script>
+    <script src="assets/js/admin/resposivefile.js"></script>
+    <script src="assets/js/admin/slug.js"></script>
     <script>
-        function responsive_filemanager_callback(field_id){
-            let urlImages = jQuery('#'+field_id).val();
-            if (!urlImages.startsWith('[', 0)) {
-                urlImages = [urlImages];
-            } else  {
-                urlImages = JSON.parse(urlImages);
-            }
-
-            let str =  "";
-            let urlnew = '';
-            if (field_id == 'image') {
-                urlImages.forEach(function (value){
-                    str += "<li class='col-6 col-md-3 col-xl-2 img-select'><img class='img-preview' src='" + value + "'></li>"
-                });
-                $('.img-select').remove();
-                $('.list-preview').append(str);
-                $('.img-preview').height($('#img-add').width());
-                jQuery('#'+field_id).val(urlImages);
-            } else if (field_id == 'document') {
-                urlImages.forEach(function (value){
-                    var arrval = value.split('/');
-                    var name = arrval[arrval.length - 1];
-                    var ext = name.split('.');
-                    let val = '';
- 
-                    if (ext[1] == 'pdf' || ext[1] == 'docx' || ext[1] == 'xlsx') {
-                        val = '"' + value + '"';
-                        if (urlnew == '') {
-                            urlnew = val;
-                        } else {
-                            urlnew += ',' + val;
-                        }
-                        str += "<li><a href='" + value + "'>" + name + "</a></li>";
-                    }
-                });
-                jQuery('#'+field_id).val(urlnew);
-                $('#list-file').html(str);
-            } else if (field_id == 'featured_img') {
-                var html = '<img class="featured_img" src="'+ urlImages[urlImages.length - 1] +'" alt="">';
-                jQuery('#'+field_id).val(urlImages[urlImages.length - 1]);
-                jQuery('#featured_preview').html(html);
-            }
-            
-        }
-
-        function openresponfile(url) {
-            window.open(url, "_blank", "toolbar,scrollbars,resizable,top=100,width=1200,height=700");
-        }
-
-        function convertslug(value){
-            var Text = value;
-            slug = Text.toLowerCase();
-            slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
-            slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
-            slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
-            slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
-            slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
-            slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
-            slug = slug.replace(/đ/gi, 'd');
-            slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
-            slug = slug.replace(/ /gi, "-");
-            slug = slug.replace(/\-\-\-\-\-/gi, '-');
-            slug = slug.replace(/\-\-\-\-/gi, '-');
-            slug = slug.replace(/\-\-\-/gi, '-');
-            slug = slug.replace(/\-\-/gi, '-');
-            slug = '@' + slug + '@';
-            slug = slug.replace(/\@\-|\-\@|\@/gi, '');
-            return slug;
-        }
-
-        $('#name').keyup(function() {
-            var slug = convertslug($("#name").val()); 
-            $("#slug").html(slug);
-            $("#slughidden").val(slug);
-        });
-          
-        function changeinput () {
-            var slug = $("#slug").html();
-            var input = '<input id="valchange" type="text" value="'+ slug +'">';
-            var cancel = '<span onclick="return cancel()" id="cancel">Hủy</span>';
-            $("#editslug").attr('onclick', 'return submitchange()');
-            $("#slug").html(input);
-            $("#spanslug").append(cancel);
-        };
-
-        function cancel() {
-            var slug = $("#slughidden").val(); 
-            $("#slug").html(slug);
-            $("#editslug").attr('onclick', 'return changeinput()');
-            $("#valchange").remove();
-            $("#cancel").remove();
-        };
-
-        function submitchange() {
-            var valchange = $("#valchange").val();
-            var valchange = convertslug($("#valchange").val());
-            $("#slug").html(valchange);
-            $("#slughidden").val(valchange);
-            $("#editslug").attr('onclick', 'return changeinput()');
-            $("#valchange").remove();
-            $("#cancel").remove();
-        };
-
         $().ready(function() {
             $("#relicForm").validate({
                 ignore: [],

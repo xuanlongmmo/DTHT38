@@ -1,0 +1,59 @@
+.rating {
+
+}
+
+.rating__header {
+    display: flex;
+    align-items: center;
+}
+
+.rating__header-media {
+    height: 40px;
+    width: 40px;
+}
+
+.rating__header-img {
+    height: 100%;
+    width: 100%;
+}
+
+.rating__header-title {
+    margin-left: 10px;
+}
+
+.rating__content {
+    margin-top: 30px;
+}
+
+.rating__table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.rating__table tr,
+.rating__table th,
+.rating__table td {
+    border: 1px solid black;
+}
+
+.rating__table-col {
+    height: 50px;
+}
+
+.rating__table-title {
+    font-size: 1.8rem;
+}
+
+.rating__table-desc {
+    text-align: center;
+}
+
+.rating__table-desc>i {
+    color: #FFA500;
+}
+
+.rating__table-desc-link:hover {
+    text-decoration: underline;
+}

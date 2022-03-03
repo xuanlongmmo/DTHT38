@@ -128,3 +128,15 @@ textarea.select2-search__field::placeholder {
 .hide {
     display: none;
 }
+
+@media screen and (max-width: 768px){
+    .img-2colum {
+        height: 150px;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .img-2colum {
+        height: 70px;
+    }
+}

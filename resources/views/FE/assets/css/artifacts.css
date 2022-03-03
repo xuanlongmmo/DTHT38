@@ -1,0 +1,170 @@
+.pagelist {
+
+}
+
+.pagelist__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.pagelist__header-key {
+    display: flex;
+    align-items: center;
+}
+
+.pagelist__header-img {
+    height: 70px;
+    width: 70px;
+}
+
+.pagelist__header-content {
+    margin-left: 10px;
+}
+
+.pagelist__header-search {
+    flex: 1;
+}
+
+.pagelist__header-search-group {
+    display: flex;
+    height: 50px;
+    position: relative;
+}
+
+.pagelist__header-search-input {
+    flex: 1;
+    padding: 0px 20px;
+    border-radius: 6px;
+}
+
+.pagelist__header-search-btn {
+    position: absolute;
+    padding: 0 15px;
+    height: 100%;
+    right: 0;
+    font-size: 2rem;
+    background: transparent;
+    border-radius: 0 6px 6px 0;
+}
+
+.pagelist__header-search-btn:hover {
+    background: var(--bgr__sub);
+}
+
+
+.pagelist__body {
+
+}
+
+.pagelist__list {
+
+}
+
+.pagelist__item {
+    display: block;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.pagelist__item:hover {
+    box-shadow: 0 0 60px 0 rgb(0 0 0 / 10%);
+}
+
+.pagelist__item-media {
+    height: 160px;
+    overflow: hidden;
+}
+
+.pagelist__item-media-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in;
+}
+
+.pagelist__item:hover .pagelist__item-media-img {
+    transform: scale(1.1);
+}
+
+.pagelist__item-content {
+    padding: 10px;
+}
+
+.pagelist__item-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    min-height: 4rem;
+    -webkit-line-clamp: 2;
+}
+
+.pagelist__item:hover .pagelist__item-title {
+    text-decoration: underline;
+}
+
+.pagelist__item-desc {
+    -webkit-line-clamp: 3;
+    min-height: 6rem;
+}
+
+.pagelist__item-show {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pagelist__item-num {
+    display: flex;
+}
+
+.pagelist__item-num-item {
+    display: flex;
+    align-items: center;
+}
+
+.pagelist__item-num-item:first-child {
+    margin-right: 10px;
+}
+
+.pagelist__item-num-item img {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+}
+
+.pagelist__item-num-item span {
+    line-height: 20px;
+}
+
+.pagelist__item-btn {
+    background: #f54f4f;
+}
+
+.pagelist__item-btn:hover {
+    opacity: 0.8;
+}
+
+
+@media screen and (max-width: 64em){
+    
+}
+
+@media screen and (max-width: 63.938em) {
+    .pagelist__header-img {
+        height: 50px;
+        width: 50px;
+    }
+}
+
+@media screen and (min-width: 46.250em) and (max-width: 63.938em){
+
+}
+
+@media screen and (max-width: 46.188em) {
+    .pagelist__header-key {
+        margin-bottom: 20px;
+    }
+}

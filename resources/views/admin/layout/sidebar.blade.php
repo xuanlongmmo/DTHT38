@@ -11,16 +11,16 @@
         <div class="app-sidebar__user">
             <div class="dropdown user-pro-body text-center">
                 <div class="user-pic">
-                    <img src="assets/images/users/16.jpg" alt="user-img" class="avatar-xxl rounded-circle mb-1">
+                    <img src="assets/images/users/default.png" alt="user-img" class="avatar-xxl rounded-circle mb-1">
                 </div>
                 <div class="user-info">
-                    <h5 class=" mb-2">{{ Auth::user()->username }}</h5>
+                    <h5 class="mb-2">{{ Auth::user()->username }}</h5>
                 </div>
             </div>
         </div>
         <ul class="side-menu">
             <li class="slide">
-                <a class="side-menu__item" data-toggle="slide" href="#">
+                <a class="side-menu__item" data-toggle="slide" href="{{ route('dashboard.index') }}">
                     <i class="feather feather-home sidemenu_icon"></i>
                     <span class="side-menu__label">Thống kê</span></i>
                 </a>
@@ -42,8 +42,8 @@
                     <span class="side-menu__label">Hiện vật</span><i class="angle fa fa-angle-right"></i>
                 </a>
                 <ul class="slide-menu">
-                    <li><a href="" class="slide-item">Danh sách</a></li>
-                    <li><a href="" class="slide-item">Thêm mới</a></li>
+                    <li><a href="{{ route('artifacts.index') }}" class="slide-item">Danh sách</a></li>
+                    <li><a href="{{ route('artifacts.create') }}" class="slide-item">Thêm mới</a></li>
                 </ul>
             </li>
 
@@ -53,8 +53,8 @@
                     <span class="side-menu__label">Nhân vật được thờ</span><i class="angle fa fa-angle-right"></i>
                 </a>
                 <ul class="slide-menu">
-                    <li><a href="" class="slide-item">Danh sách</a></li>
-                    <li><a href="" class="slide-item">Thêm mới</a></li>
+                    <li><a href="{{ route('characters.index') }}" class="slide-item">Danh sách</a></li>
+                    <li><a href="{{ route('characters.create') }}" class="slide-item">Thêm mới</a></li>
                 </ul>
             </li>
 
@@ -64,8 +64,8 @@
                     <span class="side-menu__label">Lễ hội</span><i class="angle fa fa-angle-right"></i>
                 </a>
                 <ul class="slide-menu">
-                    <li><a href="" class="slide-item">Danh sách</a></li>
-                    <li><a href="" class="slide-item">Thêm mới</a></li>
+                    <li><a href="{{ route('festivals.index') }}" class="slide-item">Danh sách</a></li>
+                    <li><a href="{{ route('festivals.create') }}" class="slide-item">Thêm mới</a></li>
                 </ul>
             </li>
         </ul>

@@ -1,0 +1,54 @@
+.file {
+
+}
+
+.file__list {
+    
+}
+
+.file__item-block {
+
+}
+
+.file__item {
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.file__item-media {
+    height: 200px;
+    overflow: hidden;
+}
+
+.file__item-media-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in;
+}
+
+.file__item:hover .file__item-media-img {
+    transform: scale(1.1);
+}
+
+.file__item-btn-block {
+    display: flex;
+}
+
+.file__item-btn {
+    background: #f54f4f;
+    margin: 10px auto 0 auto;
+}
+
+.file__item:hover .file__item-btn {
+    opacity: 0.8;
+}
+
+
+.file__item-title {
+    -webkit-line-clamp: 1;
+    margin-top: 10px;
+}

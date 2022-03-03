@@ -1,0 +1,22 @@
+.place {
+
+}
+
+.place__fillter {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.place__fillter-item {
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    background: #fff;
+    position: relative;
+    border-radius: 6px;
+}
+
+.place__fillter-img {
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+}

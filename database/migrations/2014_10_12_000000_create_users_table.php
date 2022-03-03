@@ -18,7 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('email');
             $table->string('phone');
-            $table->bigInteger('group_id')->unsigned()->nullable();
+            $table->string('profile_image')->default('assets/images/users/default.png');
+            $table->bigInteger('group_id')->unsigned()->default(3);
             $table->foreign('group_id')->references('id')->on('user_groups')->onDelete('cascade');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

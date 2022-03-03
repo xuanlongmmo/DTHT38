@@ -600,7 +600,6 @@
 		<!-- Custom js-->
 		<script src="assets/js/custom.js"></script>
 		<script src="assets/js/admin/loadunit.js"></script>
-		<script src="assets/js/admin/relics.js"></script>
 
 		@yield('script')
 	</body>

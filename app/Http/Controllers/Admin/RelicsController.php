@@ -51,9 +51,9 @@ class RelicsController extends Controller
     {
         try {
             DB::beginTransaction();
+            $arrtag = array();
             if ($request['tag'] != null) {
                 $arrval = explode(',', $request['tag']);
-                $arrtag = array();
                 foreach ($arrval as $key => $value) {
                     $check = Tag::where('name', trim($value))->first();
                     if (!$check) {
@@ -75,10 +75,17 @@ class RelicsController extends Controller
 
             $dataRelic = $request->only(['name', 'slug', 'address', 'category', 'rate', 'tag', 'featured_img', 'description', 'content', 'image', 'document']);
             $newRelic = new Relic($dataRelic);
+            $maxid = DB::table('relics')->max('id') + 1;
+            $newRelic->id = $maxid;
             $newRelic->user_id = Auth::user()->id;
             $newRelic->save();
             DB::commit();
-            return redirect()->route('relics.index');
+            
+            if (isset($request['next'])) {
+                return redirect()->route('artifacts.create', ['relic' => $maxid, 'next' => '1']);
+            } else {
+                return redirect()->route('relics.index');
+            }
         } catch (\Throwable $th) {
             DB::rollback();
             return redirect()->back()->withInput();
@@ -165,8 +172,8 @@ class RelicsController extends Controller
                 'featured_img' => $request['featured_img'], 
                 'description' => $request['description'], 
                 'content' => $request['content'], 
-                'image' => !empty($request['image']) ? explode(',', $request['image']): NULL, 
-                'document' => !empty($request['document']) ? explode(',', $request['document']): NULL, 
+                'image' => !empty($request['image']) ? explode(',', $request['image']): '', 
+                'document' => !empty($request['document']) ? explode(',', $request['document']): '', 
             ]);
             DB::commit();
 

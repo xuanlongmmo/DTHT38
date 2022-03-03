@@ -1,0 +1,266 @@
+.plDetails {
+    min-height: 1000px;
+}
+
+.plDetails__header {
+    margin-bottom: 20px;
+}
+
+.plDetails__header-content {
+
+}
+
+.plDetails__header-title {
+
+}
+
+.plDetails__body {
+
+}
+
+.plDetails__media {
+}
+
+.plDetails__media-show {
+    height: 500px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.plDetails__media-show-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: url(../libs/img/zoom_in.png), progress;
+    display: none;
+}
+
+.plDetails__media-show-img:hover {
+    opacity: 0.9;
+}
+
+.plDetails__media-show-img.active {
+    display: block;
+}
+
+.plDetails__media-show-control {
+    background: rgba(255, 255, 255, 0.3);
+    height: 40px;
+    width: 40px;
+    border-radius: 6px;
+    display: flex;
+    color: #fff;
+    cursor: pointer;
+}
+
+.plDetails__media-show-control:hover {
+    background: #fff;
+}
+
+.plDetails__media-show-control.prev {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.plDetails__media-show-control.next {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.plDetails__media-show-control i {
+    display: block;
+    margin: auto;
+    font-size: 2rem;
+}
+
+.plDetails__media-show-control:hover i {
+    color: var(--text);
+}
+
+.plDetails__media-nav {
+    display: flex;
+    justify-content: center;
+}
+
+.plDetails__media-nav-item {
+    height: 50px;
+    width: 50px;
+    border-radius: 6px;
+    object-fit: cover;
+    margin-right: 10px;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.plDetails__media-nav-item.active {
+    opacity: 1;
+}
+
+.plDetails__content {
+    padding: 20px 0;
+}
+
+.plDetails__intro {
+    margin-bottom: 20px;
+}
+
+.plDetails__intro-title {
+    margin-bottom: 10px;
+}
+
+.plDetails__intro-desc {
+
+}
+
+.plDetails__desc {
+
+}
+
+.plDetails__desc-title {
+    margin-bottom: 10px;
+}
+
+.plDetails__desc-content {
+
+}
+
+.plDetails__doc {
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.plDetails__doc-header {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.plDetails__doc-header-img {
+    height: 50px;
+    width: 50px;
+}
+
+.plDetails__doc-header-content {
+    margin-left: 10px;
+}
+
+.plDetails__doc-header-title {
+    margin-bottom: 5px;
+}
+
+.plDetails__doc-header-num {
+    color: var(--sub__text);
+}
+
+.plDetails__doc-list {
+    padding: 20px 10px 10px;
+}
+
+.plDetails__doc-item {
+    display: block;
+    padding: 10px;
+    border-radius: 6px;
+    -webkit-line-clamp: 2;
+}
+
+.plDetails__doc-list.empty .plDetails__doc-item {
+    display: none;
+}
+
+.plDetails__doc-item.empty__item {
+    text-align: center;
+    height: 100px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.plDetails__doc-list.empty .plDetails__doc-item.empty__item {
+    display: flex;
+}
+
+.plDetails__doc-item:hover {
+    background: var(--bgr__sub);
+}
+
+.plDetails__doc-item.empty__item:hover {
+    background: transparent;
+}
+
+.plDetails__involve {
+    background: #fff;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.plDetails__involve-header {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.plDetails__involve-header-img {
+    height: 50px;
+    width: 50px;
+}
+
+.plDetails__involve-header-title {
+    margin-left: 10px;
+}
+
+.plDetails__involve-list {
+    padding: 20px 0px 0px;
+}   
+
+.plDetails__involve-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.plDetails__involve-item:hover {
+    background: var(--bgr__sub);
+}
+
+.plDetails__involve-item-img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.plDetails__involve-item-content {
+    margin-left: 10px;
+}
+
+.plDetails__involve-item-title {
+    -webkit-line-clamp: 2;
+}
+
+.plDetails__involve-item-time {
+
+}
+
+@media screen and (max-width: 64em){
+    
+}
+
+@media screen and (max-width: 63.938em) {
+
+}
+
+@media screen and (min-width: 46.250em) and (max-width: 63.938em){
+
+}
+
+@media screen and (max-width: 46.188em) {
+    .plDetails__media-show {
+        height: 300px;
+    }
+}
