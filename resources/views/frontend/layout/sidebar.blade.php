@@ -1,25 +1,25 @@
 <div id="root__sildebar" class="root__sildebar">
     <ul class="root__sildebar-menu">
         <li class="root__sildebar-menu-list">
-            <a href="./index.html" class="root__sildebar-menu-link active">
+            <a href="{{ route('fe.relics.index') }}" class="root__sildebar-menu-link active">
                 <img src="assets/fe/libs/img/forbidden-city.png" alt="">
                 <span>Danh sách di tích</span>
             </a>
         </li>
         <li class="root__sildebar-menu-list">
-            <a href="./assets/components/festival.html" class="root__sildebar-menu-link">
+            <a href="{{ route('fe.festivals.index') }}" class="root__sildebar-menu-link">
                  <img src="assets/fe/libs/img/paper-lantern.png" alt="">
                 <span>Lễ hội văn hóa</span>
             </a>
         </li>
         <li class="root__sildebar-menu-list">
-            <a href="./assets/components/artifacts.html" class="root__sildebar-menu-link">
+            <a href="{{ route('fe.artifacts.index') }}" class="root__sildebar-menu-link">
                  <img src="assets/fe/libs/img/vase.png" alt="">
                 <span>Hiện vật</span>
             </a>
         </li>
         <li class="root__sildebar-menu-list">
-            <a href="./assets/components/character.html" class="root__sildebar-menu-link">
+            <a href="{{ route('fe.characters.index') }}" class="root__sildebar-menu-link">
                  <img src="assets/fe/libs/img/cpu-tower.png" alt="">
                 <span>Nhân vật được thờ</span>
             </a>

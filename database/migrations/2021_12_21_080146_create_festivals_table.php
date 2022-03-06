@@ -16,7 +16,7 @@ class CreateFestivalsTable extends Migration
         Schema::create('festivals', function (Blueprint $table) {
             $table->id();
             $table->string('name', 200);
-            $table->string('slug', 200);
+            $table->string('slug', 200)->unique();
             $table->text('featured_img');
             $table->date('date');
             $table->text('description');

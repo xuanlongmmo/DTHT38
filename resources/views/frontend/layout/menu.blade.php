@@ -105,7 +105,7 @@
                  
                 </div>
             </div>
-            <a href="./index.html" class="root__header-hot">
+            <a href="{{ route('fe.relics.index') }}" class="root__header-hot">
                 <h2 class="root__header-hot-title">Quản lý Di Tích</h2>
                 <h3 class="root__header-hot-desc">Sở văn hóa - Thể thao - Du lịch Hà Tĩnh</h3>
             </a>

@@ -71,7 +71,7 @@
                         <div class="home__relics">
                             @foreach ($relics as $relic)
                                 <div class="home__relics-item">
-                                    <a href="{{ route('relics.detail', ['slug'=>$relic->slug]) }}" class="home__relics-link">
+                                    <a href="{{ route('fe.relics.detail', ['slug'=>$relic->slug]) }}" class="home__relics-link">
                                         <div class="home__relics-item-media">
                                             <img src="{{ $relic->featured_img }}" alt="">
                                         </div>
@@ -122,10 +122,10 @@
                                 </div>
                             </div>
                             <div class="home__other-list">
-                                @foreach ($festivals as $festival)
-                                    <a href="#" class="home__other-item item">
+                               @foreach ($festivals as $festival)
+                                    <a href="{{ route('fe.festivals.detail', ['slug'=>$festival->slug]) }}" class="home__other-item item">
                                         <div class="home__other-item-box">
-                                            <div class="home__other-item-media">
+                                            <div style="height: 48px;" class="home__other-item-media">
                                                 <img src="{{ $festival->featured_img }}" alt="">
                                             </div>
                                             <div class="home__other-item-content">
@@ -137,10 +137,10 @@
                                 @endforeach
                             </div>
                             <div class="home__other-ac">
-                                    <a href="#" class="home__other-ac-btn">Xem thêm</a>
+                                    <a href="{{ route('fe.festivals.index') }}" class="home__other-ac-btn">Xem thêm</a>
                                 </div>
                         </div>
-                        <div class="home__other">
+                        {{--  <div class="home__other">
                             <div class="home__other-header">
                                 <img src="assets/fe/libs/img/customer-review.png" alt="" class="home__other-header-img">
                                 <div class="home__other-header-content">
@@ -186,7 +186,7 @@
                             <div class="home__other-ac">
                                 <a href="#" class="home__other-ac-btn">Xem thêm</a>
                             </div>
-                        </div>
+                        </div>  --}}
                         <div class="home__other">
                             <div class="home__other-header">
                                 <img src="assets/fe/libs/img/quill.png" alt="" class="home__other-header-img">

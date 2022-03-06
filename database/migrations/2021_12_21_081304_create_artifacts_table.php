@@ -16,7 +16,7 @@ class CreateArtifactsTable extends Migration
         Schema::create('artifacts', function (Blueprint $table) {
             $table->id();
             $table->string('name', 200);
-            $table->string('slug', 200);
+            $table->string('slug', 200)->unique();
             $table->text('featured_img');
             $table->text('description');
             $table->json('image');

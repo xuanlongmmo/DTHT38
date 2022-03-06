@@ -16,7 +16,7 @@ class CreateRelicsTable extends Migration
         Schema::create('relics', function (Blueprint $table) {
             $table->id();
             $table->string('name', 200);
-            $table->string('slug', 200);
+            $table->string('slug', 200)->unique();
             $table->text('featured_img');
             // $table->bigInteger('province_id')->unsigned();
             // $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');

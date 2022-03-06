@@ -22,9 +22,12 @@ class RelicsController extends Controller
         return view('frontend.relics.index', compact('relics', 'categories', 'ranks', 'festivals'));
     }
 
-    public function detail()
+    public function detail($slug)
     {
-        $relic = Relic::where('status', 1)->get();
+        $relic = Relic::where('slug', $slug)->where('status', 1)->first();
+        if (!$relic) {
+            return redirect()->back();
+        }
         return view('frontend.relics.detail', compact('relic'));
     }
 }

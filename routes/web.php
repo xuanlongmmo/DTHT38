@@ -23,22 +23,22 @@ use App\Models\Province;
 |
 */
 
-Route::get('/', [App\Http\Controllers\Frontend\RelicsController::class, 'index'])->name('relics.index');
-Route::get('/di-tich/{slug}', [App\Http\Controllers\Frontend\RelicsController::class, 'detail'])->name('relics.detail');
+Route::get('/', [App\Http\Controllers\Frontend\RelicsController::class, 'index'])->name('fe.relics.index');
+Route::get('/di-tich/{slug}', [App\Http\Controllers\Frontend\RelicsController::class, 'detail'])->name('fe.relics.detail');
 
 Route::group(['prefix' => 'le-hoi'], function() {
-    Route::get('/', [App\Http\Controllers\Frontend\FestivalsController::class, 'index'])->name('festivals.index');
-    Route::get('/{slug}', [App\Http\Controllers\Frontend\FestivalsController::class, 'index'])->name('festivals.detail');
+    Route::get('/', [App\Http\Controllers\Frontend\FestivalsController::class, 'index'])->name('fe.festivals.index');
+    Route::get('/{slug}', [App\Http\Controllers\Frontend\FestivalsController::class, 'index'])->name('fe.festivals.detail');
 });
 
 Route::group(['prefix' => 'hien-vat'], function() {
-    Route::get('/', [App\Http\Controllers\Frontend\FestivalsController::class, 'index'])->name('festivals.index');
-    Route::get('/{slug}', [App\Http\Controllers\Frontend\FestivalsController::class, 'index'])->name('festivals.detail');
+    Route::get('/', [App\Http\Controllers\Frontend\FestivalsController::class, 'index'])->name('fe.artifacts.index');
+    Route::get('/{slug}', [App\Http\Controllers\Frontend\FestivalsController::class, 'index'])->name('fe.artifacts.detail');
 });
 
 Route::group(['prefix' => 'nhan-vat'], function() {
-    Route::get('/', [App\Http\Controllers\Frontend\FestivalsController::class, 'index'])->name('festivals.index');
-    Route::get('/{slug}', [App\Http\Controllers\Frontend\FestivalsController::class, 'index'])->name('festivals.detail');
+    Route::get('/', [App\Http\Controllers\Frontend\FestivalsController::class, 'index'])->name('fe.characters.index');
+    Route::get('/{slug}', [App\Http\Controllers\Frontend\FestivalsController::class, 'index'])->name('fe.characters.detail');
 });
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {

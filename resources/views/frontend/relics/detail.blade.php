@@ -15,16 +15,16 @@
                                         <img src="assets/fe/libs/img/forbidden-city.png" alt="">
                                     </div>
                                     <div class="details__relics-header-content">
-                                        <h1 class="details__relics-header-title">Đền Củi thờ ông Hoàng Mười</h1>
-                                        <p class="details__relics-header-desc">Cập nhật ngày: 05/01/2022</p>
+                                        <h1 class="details__relics-header-title">{{ $relic->name }}</h1>
+                                        <p class="details__relics-header-desc">Cập nhật ngày: {{ $relic->updated_at->format('d/m/Y') }}</p>
                                     </div>
                                 </div>
                                 <div class="details__relics-lib">
                                     <div class="details__relics-lib-view">
-                                        <img data-fancybox="gallery" data-src="https://icdn.dantri.com.vn/2017/den-ong-hoang-muoi-1497241358615.jpg" class="details__relics-lib-view-img" src="https://icdn.dantri.com.vn/2017/den-ong-hoang-muoi-1497241358615.jpg" alt="">
-                                        <img data-fancybox="gallery" data-src="https://toigingiuvedep.vn/wp-content/uploads/2021/01/hinh-anh-nen-sasuke-va-naruto.jpg" class="details__relics-lib-view-img" src="https://toigingiuvedep.vn/wp-content/uploads/2021/01/hinh-anh-nen-sasuke-va-naruto.jpg" alt="">
-                                        <img data-fancybox="gallery" data-src="https://2giay24h.com/wp-content/uploads/2017/07/naruto-vs-sasuke.jpg" class="details__relics-lib-view-img" src="https://2giay24h.com/wp-content/uploads/2017/07/naruto-vs-sasuke.jpg" alt="">
-                                        <img data-fancybox="gallery" data-src="https://hinhanhdepvai.com/wp-content/uploads/2017/03/xem-anh-naruto-va-sasuke.jpg" class="details__relics-lib-view-img" src="https://hinhanhdepvai.com/wp-content/uploads/2017/03/xem-anh-naruto-va-sasuke.jpg" alt="">
+                                        <img data-fancybox="gallery" data-src="{{ $relic->featured_img }}" class="details__relics-lib-view-img" src="{{ $relic->featured_img }}" alt="">
+                                        @foreach ($relic->image as $image)
+                                            <img data-fancybox="gallery" data-src="{{ $image }}" class="details__relics-lib-view-img" src="{{ $image }}" alt="">
+                                        @endforeach
                                         <div onclick="relics__plus(-1)" class="details__relics-lib-control-btn left">
                                             <i class="fal fa-chevron-left"></i>
                                         </div>
@@ -36,15 +36,19 @@
                                         <div class="details__relics-lib-place">
                                             <div class="details__relics-lib-place-desc">
                                                 <img src="assets/fe/libs/img/placeholder.png" alt="">
-                                                <span>Xã Xuân Hồng, huyện Nghi Xuân, tỉnh Hà Tĩnh</span>
+                                                <span>{{ $relic->address }}</span>
                                             </div>
                                             <a href="#">Chỉ đường</a>
                                         </div>
                                         <div class="details__relics-lib-list">
-                                            <img onclick="relics__current(1)" class="details__relics-lib-item" src="https://icdn.dantri.com.vn/2017/den-ong-hoang-muoi-1497241358615.jpg" alt="">
-                                            <img onclick="relics__current(2)" class="details__relics-lib-item" src="https://toigingiuvedep.vn/wp-content/uploads/2021/01/hinh-anh-nen-sasuke-va-naruto.jpg" alt="">
-                                            <img onclick="relics__current(3)" class="details__relics-lib-item" src="https://2giay24h.com/wp-content/uploads/2017/07/naruto-vs-sasuke.jpg" alt="">
-                                            <img onclick="relics__current(4)" class="details__relics-lib-item" src="https://hinhanhdepvai.com/wp-content/uploads/2017/03/xem-anh-naruto-va-sasuke.jpg" alt="">
+                                            @php
+                                                $id = 1;
+                                            @endphp
+                                            <img onclick="relics__current({{ $id }})" class="details__relics-lib-item" src="{{ $relic->featured_img }}" alt="">      
+                                            @foreach ($relic->image as $image)
+                                                @php $id++; @endphp
+                                                <img onclick="relics__current({{ $id }})" class="details__relics-lib-item" src="{{ $image }}" alt="">      
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -54,9 +58,7 @@
                                         <h2 class="details__relics-word-title">Giới thiệu</h2>
                                     </div>
                                     <p class="details__relics-word-desc compact">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat, cupiditate nulla voluptas ex quasi blanditiis aspernatur! Ipsam quia, commodi iusto vel voluptatem eligendi, velit laborum laudantium ratione dolor iste tempora?
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem vitae, accusantium dolorem inventore dicta commodi molestias explicabo nulla porro consequuntur, sapiente deserunt quis dignissimos ut voluptates quas in rem cum!
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit mollitia quod explicabo consectetur fugiat molestias, soluta ex? Expedita assumenda id consectetur nulla cupiditate beatae, voluptatibus, iste excepturi necessitatibus, quo velit!
+                                        {{ $relic->description }}
                                     </p>
                                 </div>
                                 <div id="relics__content" class="details__relics-word">
@@ -66,9 +68,7 @@
                                     </div>
                                     <input type="checkbox" name="" id="details__desc-check" hidden>
                                     <p id="details__desc" class="details__relics-word-desc compact hidden">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat, cupiditate nulla voluptas ex quasi blanditiis aspernatur! Ipsam quia, commodi iusto vel voluptatem eligendi, velit laborum laudantium ratione dolor iste tempora?
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem vitae, accusantium dolorem inventore dicta commodi molestias explicabo nulla porro consequuntur, sapiente deserunt quis dignissimos ut voluptates quas in rem cum!
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit mollitia quod explicabo consectetur fugiat molestias, soluta ex? Expedita assumenda id consectetur nulla cupiditate beatae, voluptatibus, iste excepturi necessitatibus, quo velit!
+                                        {!! html_entity_decode($relic->content) !!}
                                     </p>
                                     <div class="details__relics-word-ac">
                                         <hr>
