@@ -63,10 +63,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="home__filter-add">
-                                <span>Thêm mới</span>
-                                <img src="assets/fe/libs/img/plus.png" alt="">
-                            </button>
+                            @if (Auth::check() && Auth::user()->group_id != 3)
+                                <a href="{{ route('relics.create') }}" class="home__filter-add">
+                                    <span>Thêm mới</span>
+                                    <img src="assets/fe/libs/img/plus.png" alt="">
+                                </a>
+                            @endif
                         </div>
                         <div class="home__relics">
                             @foreach ($relics as $relic)
@@ -243,36 +245,13 @@
                                 </div>
                             </div>
                             <div class="home__other-media row">
-                                <div class="home__other-media-item-block col l-4 m-6 c-4">
-                                    <div class="home__other-media-item">
-                                        <img src="https://i.pinimg.com/564x/4a/56/02/4a56024bb71ffcb97603341b22e3cff4.jpg" alt="">
+                                @foreach ($relic->image as $image)
+                                    <div class="home__other-media-item-block col l-4 m-6 c-4">
+                                        <div class="home__other-media-item">
+                                            <img src="{{ $image }}" alt="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="home__other-media-item-block col l-4 m-6 c-4">
-                                    <div class="home__other-media-item">
-                                        <img src="https://i.pinimg.com/564x/4a/56/02/4a56024bb71ffcb97603341b22e3cff4.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="home__other-media-item-block col l-4 m-6 c-4">
-                                    <div class="home__other-media-item">
-                                        <img src="https://i.pinimg.com/564x/4a/56/02/4a56024bb71ffcb97603341b22e3cff4.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="home__other-media-item-block col l-4 m-6 c-4">
-                                    <div class="home__other-media-item">
-                                        <img src="https://i.pinimg.com/564x/4a/56/02/4a56024bb71ffcb97603341b22e3cff4.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="home__other-media-item-block col l-4 m-6 c-4">
-                                    <div class="home__other-media-item">
-                                        <img src="https://i.pinimg.com/564x/4a/56/02/4a56024bb71ffcb97603341b22e3cff4.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="home__other-media-item-block col l-4 m-6 c-4">
-                                    <div class="home__other-media-item">
-                                        <img src="https://i.pinimg.com/564x/4a/56/02/4a56024bb71ffcb97603341b22e3cff4.jpg" alt="">
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                             <div class="home__other-ac">
                                 <a href="#" class="home__other-ac-btn">Xem thêm</a>

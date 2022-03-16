@@ -80,58 +80,36 @@
                                 <div id="relics__hot" class="details__relics-box">
                                     <div class="details__relics-box-header">
                                         <img src="assets/fe/libs/img/paper-lantern.png" alt="" class="details__relics-box-img">
-                                        <h2 class="details__relics-box-title">Lễ hội đền chợ củi</h2>
+                                        <h2 class="details__relics-box-title">Lễ hội {{ $relic->name }}</h2>
                                     </div>
                                     <div class="details__relics-box-body row">
                                         <div class="details__relics-hot-list col l-8 m-7 c-12">
-                                            <div onclick="return holiday(this)" id="relisc__time__1" class="details__relics-hot-item active">
-                                                <div class="details__relics-hot-item-number"><span>1</span></div>
-                                                <div class="details__relics-hot-item-content">
-                                                    <div class="details__relics-hot-item-title">Giỗ Đức Thánh Mẫu Liễu Hạnh</div>
-                                                    <p class="details__relics-hot-item-desc compact">
-                                                        <img src="assets/fe/libs/img/calendar.png" alt="">
-                                                        <span>Ngày 03 tháng 03 Âm lịch</span>
-                                                    </p>
-                                                    <p class="details__relics-hot-item-desc compact">
-                                                        <img src="assets/fe/libs/img/calendar2.png" alt="">
-                                                        <span>Thứ 4 ngày 14 tháng 04 Dương lịch</span>
-                                                    </p>
+                                            @php $nfes = 0; @endphp
+                                            @foreach ($relic->getfestival() as $festival)
+                                                @php $nfes++; @endphp
+                                                <div onclick="return holiday(this)" id="relisc__time__{{ $nfes }}" class="details__relics-hot-item active">
+                                                    <div class="details__relics-hot-item-number"><span>{{ $nfes }}</span></div>
+                                                    <div class="details__relics-hot-item-content">
+                                                        <div class="details__relics-hot-item-title">{{ $festival->name }}</div>
+                                                        <p class="details__relics-hot-item-desc compact">
+                                                            <img src="assets/fe/libs/img/calendar.png" alt="">
+                                                            <input id="date__{{ $nfes }}" type="text" value="{{ $festival->date }}">
+                                                            <span>Ngày {{ \Carbon\Carbon::parse($festival->date)->format('d') }} tháng {{ \Carbon\Carbon::parse($festival->date)->format('m') }} Âm lịch</span>
+                                                        </p>
+                                                        <p class="details__relics-hot-item-desc compact">
+                                                            <img src="assets/fe/libs/img/calendar2.png" alt="">
+                                                            <span>Thứ {{ \Carbon\Carbon::parse($festival->date)->format('N') }} ngày 14 tháng 04 Dương lịch</span>
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div onclick="return holiday(this)" id="relisc__time__2" class="details__relics-hot-item">
-                                                <div class="details__relics-hot-item-number"><span>2</span></div>
-                                                <div class="details__relics-hot-item-content">
-                                                    <div class="details__relics-hot-item-title">Giỗ Hưng Đạo đại Vương</div>
-                                                    <p class="details__relics-hot-item-desc compact">
-                                                        <img src="assets/fe/libs/img/calendar.png" alt="">
-                                                        <span>Ngày 20 tháng 08 Âm lịch</span>
-                                                    </p>
-                                                    <p class="details__relics-hot-item-desc compact">
-                                                        <img src="assets/fe/libs/img/calendar2.png" alt="">
-                                                        <span>Thứ 4 ngày 14 tháng 04 Dương lịch</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div onclick="return holiday(this)" id="relisc__time__3" class="details__relics-hot-item">
-                                                <div class="details__relics-hot-item-number"><span>3</span></div>
-                                                <div class="details__relics-hot-item-content">
-                                                    <div class="details__relics-hot-item-title">Lễ hội Đức Quan Hoàng Mười</div>
-                                                    <p class="details__relics-hot-item-desc compact">
-                                                        <img src="assets/fe/libs/img/calendar.png" alt="">
-                                                        <span>LNgày 10 tháng 10 Âm lịch</span>
-                                                    </p>
-                                                    <p class="details__relics-hot-item-desc compact">
-                                                        <img src="assets/fe/libs/img/calendar2.png" alt="">
-                                                        <span>Thứ 4 ngày 14 tháng 04 Dương lịch</span>
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                         <div class="details__relics-box-stt-block col l-4 m-5 c-12">
                                             <div class="details__relics-box-stt">
-                                                <div class="details__relics-box-stt-key">Còn lại</div>
-                                                <div id="relics__date" class="details__relics-box-stt-number">129</div>
-                                                <div class="details__relics-box-stt-title">Ngày nữa đến lễ hội</div>
+                                                <div id="relics__notifi1" class="details__relics-box-stt-key">Còn lại</div>
+                                                <div id="relics__date" class="details__relics-box-stt-number">10</div>
+                                                <div style="font-size: 25px;" id="relics__start" class="details__relics-box-stt-number">Đang diễn ra</div>
+                                                <div id="relics__notifi2" class="details__relics-box-stt-title">Ngày nữa đến lễ hội</div>
                                                 <a href="#" class="details__relics-box-stt-btn btn">Xem lễ hội</a>
                                             </div>
                                         </div>
@@ -294,49 +272,49 @@
                                 <div class="details__fast">
                                     <ul class="details__fast-list">
                                         <li class="details__fast-item">
-                                            <a onclick="return fast(this)" id="fast__relics__intro" href="#relics__intro" class="details__fast-item-link">
+                                            <a onclick="return fast(this)" id="fast__relics__intro" href="{{ url()->full() }}#relics__intro" class="details__fast-item-link">
                                                 <img src="assets/fe/libs/img/sticky-note.png" alt="" class="details__fast-item-img">
                                                 <span>Giới thiệu</span>
                                             </a>
                                         </li>
                                         <hr>
                                         <li class="details__fast-item">
-                                            <a onclick="return fast(this)" id="fast__relics__content" href="#relics__content" class="details__fast-item-link">
+                                            <a onclick="return fast(this)" id="fast__relics__content" href="{{ url()->full() }}#relics__content" class="details__fast-item-link">
                                                 <img src="assets/fe/libs/img/verified.png" alt="" class="details__fast-item-img">
                                                 <span>Nội dung</span>
                                             </a>
                                         </li>
                                         <hr>
                                         <li class="details__fast-item">
-                                            <a onclick="return fast(this)" id="fast__relics__hot" href="#relics__hot" class="details__fast-item-link">
+                                            <a onclick="return fast(this)" id="fast__relics__hot" href="{{ url()->full() }}#relics__hot" class="details__fast-item-link">
                                                 <img src="assets/fe/libs/img/paper-lantern.png" alt="" class="details__fast-item-img">
                                                 <span>Lễ hội</span>
                                             </a>
                                         </li>
                                         <hr>
                                         <li class="details__fast-item">
-                                            <a onclick="return fast(this)" id="fast__relics__other" href="#relics__people" class="details__fast-item-link">
+                                            <a onclick="return fast(this)" id="fast__relics__other" href="{{ url()->full() }}#relics__people" class="details__fast-item-link">
                                                 <img src="assets/fe/libs/img/cpu-tower.png" alt="" class="details__fast-item-img">
                                                 <span>Nhân vật</span>
                                             </a>
                                         </li>
                                         <hr>
                                         <li class="details__fast-item">
-                                            <a onclick="return fast(this)" id="fast2__relics__other" href="#relics__arti" class="details__fast-item-link">
+                                            <a onclick="return fast(this)" id="fast2__relics__other" href="{{ url()->full() }}#relics__arti" class="details__fast-item-link">
                                                 <img src="assets/fe/libs/img/vase.png" alt="" class="details__fast-item-img">
                                                 <span>Hiện vật</span>
                                             </a>
                                         </li>
                                         <hr>
                                         <li class="details__fast-item">
-                                            <a onclick="return fast(this)" id="fast__relics__media" href="#relics__media" class="details__fast-item-link">
+                                            <a onclick="return fast(this)" id="fast__relics__media" href="{{ url()->full() }}#relics__media" class="details__fast-item-link">
                                                 <img src="assets/fe/libs/img/magazine.png" alt="" class="details__fast-item-img">
                                                 <span>Hình ảnh</span>
                                             </a>
                                         </li>
                                         <hr>
                                         <li class="details__fast-item">
-                                            <a onclick="return fast(this)" id="fast__relics__document" href="#relics__document" class="details__fast-item-link">
+                                            <a onclick="return fast(this)" id="fast__relics__document" href="{{ url()->full() }}#relics__document" class="details__fast-item-link">
                                                 <img src="assets/fe/libs/img/document.png" alt="" class="details__fast-item-img">
                                                 <span>Tài liệu</span>
                                             </a>

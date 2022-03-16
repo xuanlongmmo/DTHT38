@@ -97,44 +97,29 @@ function holiday(e) {
     var split = id.split('__');
     var num = split[2];
     var show = document.getElementById('relics__date');
-    var key = '';
     var list = document.getElementsByClassName('details__relics-hot-item');
-
-    //count
-    if (num == 1) {
-        key = '2022-01-18';
-    } else if(num == 2) {
-        key = '2022-01-19';
-    } else if(num == 3) {
-        key = '2022-01-20';
-    }
-
-    var obj = [
-        {
-            "Ngay" :  key
-        },
-        {
-            "Ngay" :  key
-        },
-        {
-            "Ngay" :  key
-        },
-    ];
 
     const get_day_of_time = (d1, d2) => {
         let ms1 = d1.getTime();
         let ms2 = d2.getTime();
         return Math.ceil((ms1 - ms2) / (24*60*60*1000));
     };
-    var numlast = num - 1;
-    let past = new Date(obj[numlast].Ngay);
-    console.log('Ngày diễn ra lễ hội:', past);
+    var day = document.getElementById('date__'+num).value;
+    let past = new Date(day);
     let today = new Date();
     
     let time = get_day_of_time(past,today)
-    console.log('Lễ hội bắt đầu sau', time, 'ngày thôi!');
 
     show.innerHTML = time;
+
+    if (Number(time) > 0) {
+        console.log(time);
+    } else if(Number(time) == 0) {
+        
+    } else {
+        console.log('Buồn');
+    }
+
     //active
     function reset() {
         for (let index = 0; index < list.length; index++) {
